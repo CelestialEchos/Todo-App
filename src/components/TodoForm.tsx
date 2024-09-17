@@ -1,12 +1,10 @@
 import React, { useState } from "react";
-import todo from "../models/todo";
 
 interface TodoFormProps {
-  lenOfList: number;
-  AddTodo: (newTodo: todo) => void;
+  addTodo: (content: string) => void;
 }
 
-function TodoForm({ lenOfList, AddTodo }: TodoFormProps): JSX.Element {
+function TodoForm({ addTodo }: TodoFormProps): JSX.Element {
   const [content, setContent] = useState("");
 
   type InputEvent = React.ChangeEvent<HTMLInputElement>;
@@ -17,13 +15,7 @@ function TodoForm({ lenOfList, AddTodo }: TodoFormProps): JSX.Element {
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!content) return;
-    let newTodo: todo = {
-      id: lenOfList + 1,
-      content: content,
-      isCompleted: false,
-      isEditing: false,
-    };
-    AddTodo(newTodo);
+    addTodo(content);
     setContent("");
   }
   return (

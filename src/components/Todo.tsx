@@ -10,20 +10,19 @@ interface TodoProps {
   editTodoIsCompleted: (id: number, state: boolean) => void;
 }
 
-function Todo({
-  todo,
-  deleteTodo,
-  handleEdit,
-  editTodoIsCompleted,
-}: TodoProps) {
+const Todo = (props: TodoProps) => {
+  const { todo, deleteTodo, handleEdit, editTodoIsCompleted } = props;
   const [isCompleted, setIsCompleted] = useState(todo.isCompleted);
 
   useEffect(() => {
-    editTodoIsCompleted(todo.id, isCompleted);
-  }, [isCompleted]);
+    if (todo.isCompleted !== isCompleted) {
+      editTodoIsCompleted(todo.id, isCompleted);
+    }
+  }, [isCompleted, editTodoIsCompleted, todo.id, todo.isCompleted]);
 
   function handleClick() {
     setIsCompleted(!isCompleted);
+    console.log(isCompleted);
   }
 
   return (
@@ -32,6 +31,7 @@ function Todo({
         onClick={handleClick}
         className="todoItem-input"
         type="checkbox"
+        defaultChecked={todo.isCompleted ? true : false}
       ></input>
       <p
         className="todoItem-content-p"
@@ -59,6 +59,6 @@ function Todo({
       </span>
     </div>
   );
-}
+};
 
 export default Todo;
