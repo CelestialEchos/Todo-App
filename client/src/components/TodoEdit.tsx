@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import DoneIcon from "@mui/icons-material/Done";
-import todo from "../models/todo";
+import TodoItem from "../models/todo";
 
 interface TodoEditProps {
-  todo: todo;
+  todo: TodoItem;
   editTodo: (id: number) => void;
   editTodoContent: (id: number, newContent: string) => void;
 }

@@ -4,13 +4,7 @@ import TodoForm from "./components/TodoForm";
 import Todo from "./components/Todo";
 import TodoEdit from "./components/TodoEdit";
 import todoService from "./services/todo";
-
-interface TodoItem {
-  id: number;
-  content: string;
-  hasCompleted: boolean;
-  isEditing: boolean;
-}
+import TodoItem from "./models/todo";
 
 function App() {
   const [todos, setTodos] = useState<TodoItem[]>([]);

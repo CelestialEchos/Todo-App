@@ -1,10 +1,10 @@
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
-import todo from "../models/todo";
+import TodoItem from "../models/todo";
 import { useEffect, useState } from "react";
 
 interface TodoProps {
-  todo: todo;
+  todo: TodoItem;
   deleteTodo: (id: number) => void;
   handleEdit: (id: number) => void;
   editTodoHasCompleted: (id: number, state: boolean) => void;
