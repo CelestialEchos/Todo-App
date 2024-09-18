@@ -1,6 +1,6 @@
-export default interface todo {
+export default interface TodoItem {
   id: number;
   content: string;
-  isCompleted: boolean;
+  hasCompleted: boolean;
   isEditing: boolean;
 }

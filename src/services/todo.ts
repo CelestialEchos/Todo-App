@@ -3,14 +3,14 @@ import todo from "../models/todo";
 
 class TodoService {
   http = axios.create({
-    baseURL: "http://localhost:8000",
+    baseURL: process.env.REACT_APP_BASE_URL,
   });
 
   async getAllTodos() {
+    console.log(this.http);
+
     const response = await this.http.get<todo[]>("/todo");
 
-    // get方法就是一个泛型函数，通过调用时，将返回类型定义好
-    // 并没有使用泛型接口来定义内部的属性类型。
     return response.data;
   }
 
@@ -30,13 +30,14 @@ class TodoService {
     return response.data;
   }
 
-  async updateTodo(id: number, content?: string, isCompleted?: boolean) {
+  async updateTodo(id: number, content?: string, hasCompleted?: boolean) {
     const response = await this.http.patch("/todo/" + id, {
-      content: content,
-      isCompleted: isCompleted,
+      content,
+      hasCompleted: hasCompleted,
     });
     return response.data;
   }
 }
 
-export default new TodoService(); //❗此处直接传出一个实例
+// eslint-disable-next-line import/no-anonymous-default-export
+export default new TodoService();

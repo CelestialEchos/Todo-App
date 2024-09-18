@@ -7,22 +7,20 @@ interface TodoProps {
   todo: todo;
   deleteTodo: (id: number) => void;
   handleEdit: (id: number) => void;
-  editTodoIsCompleted: (id: number, state: boolean) => void;
+  editTodoHasCompleted: (id: number, state: boolean) => void;
 }
 
-const Todo = (props: TodoProps) => {
-  const { todo, deleteTodo, handleEdit, editTodoIsCompleted } = props;
-  const [isCompleted, setIsCompleted] = useState(todo.isCompleted);
+const Todo = (props: TodoProps): JSX.Element => {
+  const { todo, deleteTodo, handleEdit, editTodoHasCompleted } = props;
+  const [hasCompleted, setHasCompleted] = useState(todo.hasCompleted);
 
   useEffect(() => {
-    if (todo.isCompleted !== isCompleted) {
-      editTodoIsCompleted(todo.id, isCompleted);
-    }
-  }, [isCompleted, editTodoIsCompleted, todo.id, todo.isCompleted]);
+    editTodoHasCompleted(todo.id, hasCompleted);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [hasCompleted]);
 
   function handleClick() {
-    setIsCompleted(!isCompleted);
-    console.log(isCompleted);
+    setHasCompleted(!hasCompleted);
   }
 
   return (
@@ -31,12 +29,12 @@ const Todo = (props: TodoProps) => {
         onClick={handleClick}
         className="todoItem-input"
         type="checkbox"
-        defaultChecked={todo.isCompleted ? true : false}
+        defaultChecked={todo.hasCompleted ? true : false}
       ></input>
       <p
         className="todoItem-content-p"
         style={{
-          textDecorationLine: todo.isCompleted ? "line-through" : "none",
+          textDecorationLine: hasCompleted ? "line-through" : "none",
         }}
       >
         {todo.content}

@@ -8,13 +8,15 @@ interface TodoEditProps {
   editTodoContent: (id: number, newContent: string) => void;
 }
 
-function TodoEdit({ todo, editTodo, editTodoContent }: TodoEditProps) {
+const TodoEdit = (props: TodoEditProps): JSX.Element => {
+  const { todo, editTodo, editTodoContent } = props;
   const [content, setContent] = useState(todo.content);
 
   useEffect(() => {
     if (content !== todo.content) {
       editTodoContent(todo.id, content);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [content]);
 
   type InputEvent = React.ChangeEvent<HTMLInputElement>;
@@ -43,6 +45,6 @@ function TodoEdit({ todo, editTodo, editTodoContent }: TodoEditProps) {
       </span>
     </form>
   );
-}
+};
 
 export default TodoEdit;

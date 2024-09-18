@@ -149,13 +149,13 @@ input[type="checkbox"]:checked::before {
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 15px;
-  color: #fff; /* 对勾颜色与边框一致 */
+  color: #fff;
 }
 
 input[type="checkbox"]:hover {
-  border-color: #1a1a40; /* 选中时边框颜色 */
+  border-color: #1a1a40;
 }
 
 input[type="checkbox"]:hover::before {
-  color: #1a1a40; /* 选中时边框颜色 */
+  color: #1a1a40;
 }

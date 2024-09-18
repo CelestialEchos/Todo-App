@@ -4,7 +4,8 @@ interface TodoFormProps {
   addTodo: (content: string) => void;
 }
 
-function TodoForm({ addTodo }: TodoFormProps): JSX.Element {
+const TodoForm = (props: TodoFormProps): JSX.Element => {
+  const { addTodo } = props;
   const [content, setContent] = useState("");
 
   type InputEvent = React.ChangeEvent<HTMLInputElement>;
@@ -30,6 +31,6 @@ function TodoForm({ addTodo }: TodoFormProps): JSX.Element {
       <button onClick={handleSubmit}>Add task</button>
     </form>
   );
-}
+};
 
 export default TodoForm;
