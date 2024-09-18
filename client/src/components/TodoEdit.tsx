@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import DoneIcon from "@mui/icons-material/Done";
 import TodoItem from "../models/todo";
 
@@ -12,12 +12,12 @@ const TodoEdit = (props: TodoEditProps): JSX.Element => {
   const { todo, editTodo, editTodoContent } = props;
   const [content, setContent] = useState(todo.content);
 
-  useEffect(() => {
-    if (content !== todo.content) {
-      editTodoContent(todo.id, content);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [content]);
+  // useEffect(() => {
+  //   if (content !== todo.content) {
+  //     editTodoContent(todo.id, content);
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [content]);
 
   type InputEvent = React.ChangeEvent<HTMLInputElement>;
   function handleChange(e: InputEvent) {
@@ -26,8 +26,12 @@ const TodoEdit = (props: TodoEditProps): JSX.Element => {
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!content) return;
-    editTodo(todo.id);
+
+    if (content !== todo.content && content !== undefined && content !== null) {
+      editTodoContent(todo.id, content);
+    } else {
+      editTodo(todo.id);
+    }
   }
 
   return (

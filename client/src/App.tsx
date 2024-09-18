@@ -42,7 +42,9 @@ function App() {
     await todoService.updateTodo(id, newContent);
     setTodos(
       todos.map((todo) =>
-        todo.id === id ? { ...todo, content: newContent } : todo
+        todo.id === id
+          ? { ...todo, content: newContent, isEditing: !todo.isEditing }
+          : todo
       )
     );
   };
